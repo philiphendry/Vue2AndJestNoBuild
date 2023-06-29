@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="./node_modules/vue/dist/vue.esm.browser.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module">
+        const response = await fetch('./MyComponent.html');
+        const html = await response.text();
+
+        import Vue from './node_modules/vue/dist/vue.esm.browser.js';
+        import MyComponent from './MyComponent.js';
+        MyComponent.template = html;
+        const myComponent = Vue.extend(MyComponent);
+        new myComponent().$mount('#root');
+    </script>
+</body>
+</html>
